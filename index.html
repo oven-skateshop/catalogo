@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loja Online</title>
+  <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Nata+Sans:wght@100..900&family=Sora:wght@100..800&display=swap');
+    
+    :root {
+      --base: #2B2B2B;
+      --accent: #FF4733;
+      --text: #fff;
+      --card: #232323;
+      --border: #383838;
+      --whatsapp: #25D366;
+      --whatsapp-hover: #45f392;
+    }
+    body {
+      font-family: "Manrope", sans-serif;
+      background: var(--base);
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+    }
+    .logo-placeholder {
+      width: 325px;
+      max-width: 98vw;
+      height: 105px;
+      background: url('img/logo-svg.svg') center center no-repeat;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0 auto;
+      margin-top: 22px;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+    header {
+      background: var(--base);
+      color: var(--accent);
+      padding: 14px 0 12px 0;
+      text-align: center;
+      border-bottom: 2px solid var(--accent);
+      letter-spacing: 2px;
+    }
+    header h1 {
+      display: none;
+    }
+    header span {
+      color: var(--accent);
+      font-size: 1.02rem;
+      letter-spacing: 1px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 32px auto;
+      background: var(--card);
+      box-shadow: 0 2px 16px #0006;
+      border-radius: 12px;
+      padding: 36px 18px 24px 18px;
+      border: 1.5px solid var(--border);
+    }
+    h2 {
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: 4px;
+      margin-top: 38px;
+      margin-bottom: 14px;
+      color: var(--accent);
+      font-size: 1.35rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px 20px;
+      margin-bottom: 32px;
+    }
+    .prod-card {
+      background: #232323;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #1114;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 12px 13px 12px;
+      transition: transform 0.14s, border 0.14s;
+      min-height: 430px;
+      position: relative;
+    }
+    .prod-card:hover {
+      transform: translateY(-3px) scale(1.012);
+      border-color: var(--accent);
+      box-shadow: 0 6px 16px #ff473320;
+    }
+    .prod-img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px #0001;
+      display: block;
+      max-width: 100%;
+      aspect-ratio: 1/1;
+    }
+    .prod-name {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 7px;
+      color: var(--text);
+      text-align: center;
+      min-height: 38px;
+    }
+    .prod-price {
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1.13rem;
+      margin-bottom: 16px;
+    }
+    .add-btn {
+      background: var(--whatsapp);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 9px 30px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      transition: background 0.21s, scale 0.12s;
+      box-shadow: 0 1px 4px #0002;
+      margin-top: auto;
+      letter-spacing: 1px;
+    }
+    .add-btn:hover {
+      background: var(--whatsapp-hover);
+      scale: 1.05;
+    }
+    #cart {
+      background: #232323;
+      padding: 19px 13px 14px 13px;
+      border: 1.5px solid var(--accent);
+      border-radius: 9px;
+      margin-top: 23px;
+      margin-bottom: 34px;
+      color: var(--text);
+    }
+    #cart-list {
+      margin-bottom: 11px;
+    }
+    #cart-list li {
+      border-bottom: 1px solid #373737;
+      padding: 7px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    #cart-list li:last-child {
+      border-bottom: none;
+    }
+    .cart-img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 1px 4px #0002;
+      aspect-ratio: 1/1;
+    }
+    .cart-prod-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .cart-prod-name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 260px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .cart-prod-details {
+      color: #bbb;
+      font-size: 13px;
+    }
+    .remove-btn {
+      background: var(--whatsapp);
+      color: #fff;
+      padding: 4px 11px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.16s, color 0.16s;
+      font-size: 13px;
+      border: 1px solid var(--whatsapp);
+      margin-left: 10px;
+    }
+    .remove-btn:hover {
+      background: var(--whatsapp-hover);
+      color: #fff;
+      border-color: var(--whatsapp-hover);
+    }
+    #whatsapp-btn {
+      background: var(--whatsapp);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 13px 24px;
+      font-size: 18px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 8px;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: bold;
+      box-shadow: 0 1px 6px #25d36633;
+      letter-spacing: 1px;
+    }
+    #whatsapp-btn:disabled {
+      background: #444;
+      opacity: 0.65;
+      cursor: default;
+      color: #aaa;
+    }
+    #whatsapp-btn:hover:not(:disabled) {
+      background: var(--whatsapp-hover);
+    }
+    .notification {
+      position: fixed;
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--whatsapp);
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.11rem;
+      box-shadow: 0 4px 24px #2226;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: opacity 0.3s, top 0.3s;
+    }
+    .notification.show {
+      opacity: 1;
+      pointer-events: auto;
+      top: 55px;
+    }
+    .notification svg {
+      vertical-align: middle;
+      margin-right: 8px;
+      margin-top: -3px;
+    }
+    #scrollTopBtn {
+      position: fixed;
+      right: 24px;
+      bottom: 38px;
+      z-index: 99999;
+      background: var(--whatsapp);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 54px;
+      height: 54px;
+      box-shadow: 0 2px 8px #2226;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.22s, transform 0.13s;
+      font-size: 28px;
+    }
+    #scrollTopBtn:hover {
+      background: var(--whatsapp-hover);
+      transform: scale(1.08);
+    }
+    #scrollTopBtn svg {
+      width: 28px;
+      height: 28px;
+      display: block;
+      margin: 0 auto;
+    }
+    .total {
+      font-weight: bold;
+      font-size: 17px;
+      margin-top: 10px;
+      margin-bottom: 0;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+    ::selection {
+      background: var(--accent);
+      color: #fff;
+    }
+    @media (max-width: 1200px) {
+      .container { max-width: 98vw; }
+      .prod-img { width: 100%; max-width: 300px; height: auto; aspect-ratio:1/1; }
+      .prod-card { min-height: 410px; }
+    }
+    @media (max-width: 800px) {
+      .logo-placeholder { width: 98vw; height: 60px;}
+      .container { padding: 10px; }
+      header { padding: 20px 0 13px 0; }
+      .prod-img { width: 100%; max-width: 220px; height: auto; aspect-ratio: 1/1; }
+      .cart-img { width: 60px; height: 60px; aspect-ratio: 1/1; }
+      .cart-prod-name { max-width: 120px; }
+      .prod-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+      #scrollTopBtn { right: 12px; bottom: 16px; width: 46px; height: 46px; font-size: 22px;}
+      #scrollTopBtn svg { width: 22px; height: 22px; }
+    }
+    @media (max-width: 540px) {
+      .logo-placeholder { height: 38px; min-height: 26px;}
+      .container { padding: 2vw; }
+      #whatsapp-btn { font-size: 15px; }
+      .prod-img { width: 100%; max-width: 100vw; height: auto; aspect-ratio: 1/1; }
+      .cart-img { width: 36px; height: 36px; aspect-ratio: 1/1; }
+      .cart-prod-name { max-width: 82px; }
+      .prod-grid { grid-template-columns: 1fr; }
+      #scrollTopBtn { right: 7px; bottom: 7px; width: 38px; height: 38px; font-size: 16px;}
+      #scrollTopBtn svg { width: 16px; height: 16px; }
+    }
+    a:link, a:visited { color: #25D366; }
+  </style>
+</head>
+<body>
+  <div class="logo-placeholder" title="Clique para trocar a logo"></div>
+  <header>
+    <span>Monte seu pedido e finalize pelo WhatsApp!</span>
+  </header>
+  <div class="container">
+    <div id="products"></div>
+    <div id="cart">
+      <h3 style="color:var(--accent);margin-top:0;font-size:1.13rem;">Carrinho</h3>
+      <ul id="cart-list"></ul>
+      <p class="total">Total: <span id="cart-total">R$ 0,00</span></p>
+      <button id="whatsapp-btn" disabled>
+        <img src="https://img.icons8.com/ios-filled/24/ffffff/whatsapp.png" alt="WhatsApp" style="height:24px;width:24px;">
+        Finalizar Pedido no WhatsApp
+      </button>
+    </div>
+    <p style="color:#888; font-size:13px; text-align:center;letter-spacing:1px;">
+      &copy; 2025 - Oven Skateshop &nbsp;|&nbsp;
+      <a href="https://www.instagram.com/ovenskateshop/" target="_blank" style="color:#fff;text-decoration:none;font-weight:bold;">
+        Instagram: @ovenskateshop
+      </a>
+    </p>
+  </div>
+  <!-- Notification element -->
+  <div id="notification" class="notification" role="alert" aria-live="polite">
+    <div id="notificationMsg" style="display:flex;align-items:center;">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="12" fill="#fff" opacity="0.13"/>
+        <path d="M8.5 12.5l2.5 2.5 4.5-4.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Produto adicionado ao pedido!</span>
+    </div>
+    <button id="goToCartBtn" style="margin:18px auto 0 auto;display:block;background:#fff;color:#25D366;border:none;font-weight:bold;border-radius:4px;padding:7px 18px;cursor:pointer;transition:background 0.18s;font-size:0.97rem;">
+      Finalizar pedido
+    </button>
+  </div>
+  <!-- Scroll to top button -->
+  <button id="scrollTopBtn" title="Voltar ao topo" aria-label="Voltar ao topo">
+    <svg viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="12" fill="#fff" opacity="0.15"/>
+      <path d="M12 17V7M12 7l-5 5m5-5l5 5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <script>
+    const products = [
+      {
+        category: "Shapes",
+        items: [
+          { name: "Shape Oven Marfim - Happy", price: 120, image: "img/oven-marfim.png" },
+          { name: "Shape Oven Marfim - High", price: 120, image: "img/oven-marfim-h.png" },
+          { name: "Shape Oven Maple - Happy", price: 200, image: "img/oven-marfim.png" },
+          { name: "Shape Oven Maple - High", price: 200, image: "img/oven-marfim-h.png" },
+          { name: "Shape Oven Maple - Ozzy </br> (Encomenda)", price: 200, image: "img/oven-maple-ozzy.jpg" },
+          { name: "Shape Oven Maple - Make Your Choice </br> (Encomenda)", price: 200, image: "img/oven-maple-make.png" },
+          { name: "Shape Oven Maple - Bob Marley </br> (Poucas unidades)", price: 250, image: "img/oven-maple.png" }
+        ]
+      },
+      {
+        category: "Trucks",
+        items: [
+          { name: "Truck Liso", price: 90, image: "img/truck-liso.png" },
+          { name: "Truck Intruder 139mm - Intruder", price: 180, image: "img/truck-intruder.webp" },
+          { name: "Truck Intruder 149mm - Intruder", price: 180, image: "img/truck_intruder_preto.webp" },
+          { name: "Truck Intruder 149mm - Intruder", price: 180, image: "img/truck_intruder_branco.webp" },
+          { name: "Truck Obi 149 mm - Obi", price: 210, image: "img/truck_obi.webp" },
+        ]
+      },
+      {
+        category: "Rodas",
+        items: [
+          { name: "Roda Color - Black Sheep", price: 50, image: "img/roda_black_sheep_color.webp" },
+          { name: "Roda - Mentex", price: 55, image: "img/mentex-color.webp" },
+          { name: "Roda 99a - 53mm - Mentex", price: 55, image: "img/roda_mentex_conica.webp" },
+          { name: "Roda Gringa - Mentex", price: 90, image: "img/gringa.jpg" },
+          { name: "Roda 53 mm - Black Sheep", price: 90, image: "img/roda-53-bs.webp" },
+          { name: "Roda Salve Planeta 53 mm - Moska", price: 130, image: "img/Moska-Salve-Planeta.webp" },
+          { name: "Roda André Will - Moska", price: 130, image: "img/roda-moska-andre-will.jpg" },
+          { name: "Roda Silas Ribeiro - Boss", price: 180, image: "img/roda-boos-silas.png" },
+          { name: "Roda - Homeless", price: 200, image: "img/roda-homeless.png" },
+          { name: "Roda Augusto Fumaça - Boss", price: 200, image: "img/boss-fumaça.webp" }
+          
+        ]
+      },
+      {
+        category: "Rolamentos",
+        items: [
+          { name: "Rolamento Red - Black Sheep", price: 40, image: "img/bs-red.webp" },
+          { name: "Rolamento Black - Black Sheep", price: 50, image: "img/bs-black.webp" },
+          { name: "Rolamento Gold - Black Sheep", price: 60, image: "img/bs-gold.png" },
+          { name: "Rolamento This Way - This Way", price: 85, image: "img/tw-red.webp" },
+          { name: "Rolamento Importado - Black Sheep", price: 110, image: "img/bs-importado.jpg" },
+          { name: "Rolamento Homeless - Homeless", price: 150, image: "img/rolamento-home.png" },
+          { name: "Rolamento Red - Bones", price: 180, image: "img/reds.webp" }
+        ]
+      },
+      {
+        category: "Lixas (consultar desenhos)",
+        items: [
+          { name: "Lixa Jessup - Jessup", price: 55, image: "img/lx-jessup.webp" },
+          { name: "Lixa Desenhada Black Sheep - Black Sheep", price: 55, image: "img/lixa-bs.jpg" },
+          { name: "Lixa Desenhada - Boss", price: 65, image: "img/lixa-boss.jpg" },
+          { name: "Lixa Desenhada - Grizzly", price: 70, image: "img/grizzly.jpg" }
+        ]
+      },
+      {
+        category: "Parafusos, Porcas e Amortecedor",
+        items: [
+          { name: "Parafuso Allen Porca 10 - Black Sheep", price: 18, image: "img/Parafuso-Allen-Porca-10.png" },
+          { name: "Parafuso Allen Porca 10 - This Way", price: 25, image: "img/this-way.jpg" },
+          { name: "Parafuso base - Boss", price: 20, image: "img/parafuso_boss_co.webp" },
+          { name: "Amortecedor - Black Sheep", price: 20, image: "img/amortecedor-BS.webp" },
+          { name: "Parafuso Central - Black Sheep", price: 18, image: "img/parafuso-central.png" },
+          { name: "Porca Central - Black Sheep", price: 10, image: "img/porca-13-truck-skate.webp" },
+          { name: "Porca para truck - Black Sheep", price: 7, image: "img/porca-para-truck.jpeg" }
+        ]
+      },
+      {
+        category: "Outros",
+        items: [
+          { name: "Capacete Fun Light - Pro XT", price: 70, image: "img/Capacete-Fun-Light-Pro-XT.png" },
+          { name: "Kit proteção iniciante - Mentex", price: 120, image: "img/kit_de_protecao_infantil_mentex.webp" },
+          { name: "Pads - Black Sheep", price: 20, image: "img/pads-bs.webp" }
+        ]
+      }
+    ];
+
+    function renderProducts() {
+      let html = '';
+      products.forEach(cat => {
+        html += `<h2>${cat.category}</h2><div class="prod-grid">`;
+        cat.items.forEach((prod, idx) => {
+          html += `
+            <div class="prod-card">
+              <img src="${prod.image}" alt="${prod.name}" class="prod-img">
+              <div class="prod-name">${prod.name}</div>
+              <div class="prod-price">R$ ${prod.price.toFixed(2).replace('.', ',')}</div>
+              <button class="add-btn" data-category="${cat.category}" data-idx="${idx}">Adicionar</button>
+            </div>`;
+        });
+        html += `</div>`;
+      });
+      document.getElementById('products').innerHTML = html;
+    }
+
+    function showNotification(msg) {
+      const notification = document.getElementById('notification');
+      notification.innerHTML = `
+        <div id="notificationMsg" style="display:flex;align-items:center;">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="12" fill="#fff" opacity="0.13"/>
+            <path d="M8.5 12.5l2.5 2.5 4.5-4.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>${msg}</span>
+        </div>
+        <button id="goToCartBtn" style="margin:18px auto 0 auto;display:block;background:#fff;color:#25D366;border:none;font-weight:bold;border-radius:4px;padding:7px 18px;cursor:pointer;transition:background 0.18s;font-size:0.97rem;">
+          Finalizar pedido
+        </button>
+      `;
+      notification.classList.add('show');
+      setTimeout(() => {
+        const btn = document.getElementById('goToCartBtn');
+        if(btn){
+          btn.onclick = function() {
+            document.getElementById('cart').scrollIntoView({behavior:'smooth'});
+            notification.classList.remove('show');
+          };
+        }
+      }, 50);
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3500);
+    }
+
+    let cart = [];
+
+    function addToCart(category, idx) {
+      const cat = products.find(c => c.category === category);
+      const prod = cat.items[idx];
+      const existing = cart.find(item => item.name === prod.name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...prod, qty: 1 });
+      }
+      renderCart();
+      showNotification("Produto adicionado ao pedido!");
+    }
+
+    function removeFromCart(name) {
+      cart = cart.filter(item => item.name !== name);
+      renderCart();
+    }
+
+    function renderCart() {
+      const cartList = document.getElementById('cart-list');
+      cartList.innerHTML = '';
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" class="cart-img">
+          <div class="cart-prod-info">
+            <span class="cart-prod-name">${item.name}</span>
+            <span class="cart-prod-details">x${item.qty}</span>
+          </div>
+          <strong style="color:var(--accent);margin-left:8px;">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</strong>
+          <button class="remove-btn" onclick="removeFromCart('${item.name.replace(/'/g, "\\'")}')">Remover</button>
+        `;
+        cartList.appendChild(li);
+      });
+      document.getElementById('cart-total').textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
+      document.getElementById('whatsapp-btn').disabled = cart.length === 0;
+    }
+
+    function sendToWhatsApp() {
+      const number = '5516982272466'; // Troque pelo número da loja
+      let message = `Olá! Gostaria de fazer um pedido:\n`;
+      cart.forEach(item => {
+        message += `• ${item.name} x${item.qty} = R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}\n`;
+      });
+      let total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      message += `\nTotal: R$ ${total.toFixed(2).replace('.', ',')}`;
+      const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('add-btn')) {
+        addToCart(e.target.dataset.category, e.target.dataset.idx);
+      }
+    });
+
+    document.getElementById('whatsapp-btn').onclick = sendToWhatsApp;
+    window.removeFromCart = removeFromCart;
+
+    // Scroll to Top button logic
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        scrollTopBtn.style.display = 'flex';
+      } else {
+        scrollTopBtn.style.display = 'none';
+      }
+    });
+    scrollTopBtn.onclick = function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    renderProducts();
+    renderCart();
+  </script>
+</body>
+</html>
