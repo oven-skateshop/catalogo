@@ -390,18 +390,16 @@
         items: [
           { name: "Shape Oven Marfim - Ozzy", price: 120, image: "img/oz.jpg" },
           { name: "Shape Oven Marfim - Make Your Choice", price: 120, image: "img/make.jpg" },
-          { name: "Shape Oven Maple - Ozzy", price: 200, image: "img/oz.jpg" },
-          { name: "Shape Oven Maple - Make Your Choice", price: 200, image: "img/make.jpg" }
+          { name: "Shape Oven Maple - Mano Brow", price: 200, image: "img/mano.jpg" },
+          { name: "Shape Oven Maple - Shine", price: 200, image: "img/shine.jpg" }
         ]
       },
       {
         category: "Trucks",
         items: [
           { name: "Truck Liso", price: 90, image: "img/truck-liso.png" },
-          { name: "Truck Intruder 139mm - Intruder", price: 180, image: "img/truck-intruder.webp" },
           { name: "Truck Intruder 149mm - Intruder", price: 180, image: "img/truck_intruder_preto.webp" },
           { name: "Truck Intruder 149mm - Intruder", price: 180, image: "img/truck_intruder_branco.webp" },
-          { name: "Truck Obi 149 mm - Obi", price: 210, image: "img/truck_obi.webp" },
         ]
       },
       {
@@ -414,11 +412,8 @@
           { name: "Roda 53 mm - Black Sheep", price: 90, image: "img/roda-53-bs.webp" },
           { name: "Roda Salve Planeta 53 mm - Moska", price: 130, image: "img/Moska-Salve-Planeta.webp" },
           { name: "Roda André Will - Moska", price: 130, image: "img/roda-moska-andre-will.jpg" },
-          { name: "Roda Silas Ribeiro - Boss", price: 180, image: "img/roda-boos-silas.png" },
           { name: "Roda - Homeless", price: 200, image: "img/roda-homeless.png" },
-          { name: "Roda Augusto Fumaça - Boss", price: 200, image: "img/boss-fumaça.webp" }
-          
-        ]
+    ]
       },
       {
         category: "Rolamentos",
@@ -426,7 +421,6 @@
           { name: "Rolamento Red - Black Sheep", price: 40, image: "img/bs-red.webp" },
           { name: "Rolamento Black - Black Sheep", price: 50, image: "img/bs-black.webp" },
           { name: "Rolamento Gold - Black Sheep", price: 60, image: "img/bs-gold.png" },
-          { name: "Rolamento This Way - This Way", price: 85, image: "img/tw-red.webp" },
           { name: "Rolamento Importado - Black Sheep", price: 110, image: "img/bs-importado.jpg" },
           { name: "Rolamento Homeless - Homeless", price: 150, image: "img/rolamento-home.png" },
           { name: "Rolamento Red - Bones", price: 180, image: "img/reds.webp" }
@@ -436,7 +430,6 @@
         category: "Lixas (consultar desenhos)",
         items: [
           { name: "Lixa Jessup - Jessup", price: 55, image: "img/lx-jessup.webp" },
-          { name: "Lixa Desenhada Black Sheep - Black Sheep", price: 55, image: "img/lixa-bs.jpg" },
           { name: "Lixa Desenhada - Boss", price: 65, image: "img/lixa-boss.jpg" },
           { name: "Lixa Desenhada - Grizzly", price: 70, image: "img/grizzly.jpg" }
         ]
@@ -553,7 +546,7 @@
     }
 
     function sendToWhatsApp() {
-      const number = '5516982272466'; // Troque pelo número da loja
+      const number = '5516996502878'; // Troque pelo número da loja
       let message = `Olá! Gostaria de fazer um pedido:\n`;
       cart.forEach(item => {
         message += `• ${item.name} x${item.qty} = R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}\n`;
